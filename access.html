@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404 | Serpientes y Escaleras Equipo de Dereck</title>
+    <!-- Ícono de la pestaña (Favicon) -->
+    <link rel="icon" href="https://i.ibb.co/h191t3k2/Devon-Title-logo.png" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.tailwind = window.tailwind || {};
+        window.tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Jost', 'sans-serif'],
+                        serif: ['"Bodoni Moda"', 'serif'],
+                    },
+                    letterSpacing: {
+                        widest: '.2em',
+                        wider: '.1em'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* --- Sincronización Animación (Línea) --- */
+        @keyframes slashAnim {
+            0%, 20% { width: 0%; opacity: 0; transform: rotate(-45deg) scaleX(0); }
+            30%, 70% { width: 145%; opacity: 1; transform: rotate(-45deg) scaleX(1); }
+            80%, 100% { width: 0%; opacity: 0; transform: rotate(-45deg) scaleX(0); }
+        }
+        
+        .animated-slash {
+            position: absolute;
+            height: 3px;
+            background-color: currentColor;
+            border-radius: 2px;
+            transform-origin: center;
+            animation: slashAnim 4s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @media (min-width: 768px) {
+            .animated-slash {
+                height: 5px;
+            }
+        }
+
+        /* Utilidades para ocultar scrollbar en el selector de idiomas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Animación de transición de texto */
+        .fade-out {
+            opacity: 0;
+            transform: translateY(10px);
+            filter: blur(2px);
+        }
+    </style>
+</head>
+<body class="bg-white text-black font-sans flex flex-col min-h-screen selection:bg-black selection:text-white">
+
+    <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 py-10 md:py-16 text-center flex flex-col items-center justify-center gap-8 md:gap-12 animate-fade-in flex-1">
+        
+        <!-- Logo HISTORIA centrado con interactividad en la T y línea animada en la O -->
+        <div id="historia-text" class="flex items-center justify-center transition-all duration-500 w-full overflow-hidden py-4 md:py-8">
+            <a href="index.html" class="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-bold tracking-widest text-black font-serif uppercase flex items-center hover:opacity-80 transition-opacity">
+                HIST<span class="relative inline-flex items-center justify-center">O<span class="absolute inset-0 flex items-center justify-center pointer-events-none"><span class="animated-slash"></span></span></span>RIA
+            </a>
+        </div>
+
+        <div id="text-wrapper" class="flex flex-col items-center gap-4 max-w-lg transition-all duration-500 ease-in-out">
+            <h1 id="maint-title" class="text-sm md:text-base font-medium tracking-[0.3em] uppercase text-black" style="font-family: 'Jost', sans-serif;">
+                Error 404
+            </h1>
+            <div class="w-12 h-[1px] bg-black/20 my-2"></div>
+            <p id="maint-body" class="text-xs md:text-sm text-gray-500 tracking-wider leading-relaxed font-light px-2" style="font-family: 'Jost', sans-serif;">
+                Hola, lo sentimos. Esta página no existe o llegaste a un error 404
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Selector de idiomas (Bottom Footer) -->
+    <footer class="w-full mt-auto pb-8 md:pb-10 pt-4 px-4 sm:px-6 flex justify-center z-10 shrink-0">
+        <div id="lang-selector" class="flex gap-6 overflow-x-auto no-scrollbar text-[9px] md:text-[10px] font-sans tracking-[0.2em] uppercase max-w-6xl w-full justify-start lg:justify-center px-4 pb-2">
+            <!-- Los botones de idioma se generan aquí mediante JavaScript -->
+        </div>
+    </footer>
+
+    <!-- Banner de Cookies -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full md:bottom-6 md:left-6 md:w-auto md:max-w-sm bg-white border-t md:border border-black p-6 z-50 transform translate-y-full opacity-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col gap-4 font-sans shadow-2xl invisible">
+        <h3 class="text-xs font-semibold tracking-widest uppercase text-black">Uso de Cookies</h3>
+        <p class="text-xs text-gray-500 leading-relaxed">
+            Utilizamos cookies para ofrecerle una experiencia excepcional. Al continuar, acepta nuestro uso de cookies en la plataforma.
+        </p>
+        <div class="flex flex-col gap-2 mt-2">
+            <button id="accept-cookies" class="w-full bg-black text-white text-[9px] md:text-[10px] tracking-[0.2em] uppercase py-3 font-medium hover:bg-gray-800 transition-colors">
+                Aceptar
+            </button>
+            <button id="decline-cookies" class="w-full bg-white text-gray-400 border border-gray-300 text-[9px] md:text-[10px] tracking-[0.2em] uppercase py-3 font-medium cursor-not-allowed transition-all duration-500">
+                No aceptar (Solo suscripción)
+            </button>
+        </div>
+    </div>
+
+    <!-- Script de Traducción y Animación -->
+    <script>
+        const translations = [
+            { code: 'es', label: 'Traducir al Español', dir: 'ltr', title: 'Error 404', body: 'Hola, lo sentimos. Esta página no existe o llegaste a un error 404' },
+            { code: 'en', label: 'Translate to English', dir: 'ltr', title: 'Error 404', body: 'Hello, we are sorry. This page does not exist or you reached a 404 error' },
+            { code: 'fr', label: 'Traduire en Français', dir: 'ltr', title: 'Erreur 404', body: 'Bonjour, nous sommes désolés. Cette page n\'existe pas ou vous êtes tombé sur une erreur 404' },
+            { code: 'it', label: 'Traduci in Italiano', dir: 'ltr', title: 'Errore 404', body: 'Ciao, ci dispiace. Questa pagina non esiste o hai raggiunto un errore 404' },
+            { code: 'pt', label: 'Traduzir para Português', dir: 'ltr', title: 'Erro 404', body: 'Olá, sentimos muito. Esta página não existe ou você chegou a um erro 404' }
+        ];
+
+        const container = document.getElementById('lang-selector');
+        const textWrapper = document.getElementById('text-wrapper');
+        const titleEl = document.getElementById('maint-title');
+        const bodyEl = document.getElementById('maint-body');
+        let currentLangCode = 'es';
+
+        translations.forEach(lang => {
+            const btn = document.createElement('button');
+            btn.className = `lang-btn whitespace-nowrap flex-shrink-0 px-1 py-1 border-b border-transparent transition-all duration-300 ${lang.code === 'es' ? '!text-black !border-black font-semibold' : 'text-gray-400 hover:text-black'}`;
+            btn.dataset.lang = lang.code;
+            btn.textContent = lang.label;
+
+            btn.addEventListener('click', () => {
+                if (btn.classList.contains('!text-black')) return;
+                textWrapper.classList.add('fade-out');
+                setTimeout(() => {
+                    currentLangCode = lang.code;
+                    titleEl.textContent = lang.title;
+                    bodyEl.textContent = lang.body;
+                    textWrapper.dir = lang.dir;
+                    textWrapper.classList.remove('fade-out');
+                    document.querySelectorAll('.lang-btn').forEach(b => {
+                        b.classList.remove('!text-black', '!border-black', 'font-semibold');
+                        b.classList.add('text-gray-400', 'border-transparent');
+                    });
+                    btn.classList.remove('text-gray-400', 'border-transparent');
+                    btn.classList.add('!text-black', '!border-black', 'font-semibold');
+                }, 300);
+            });
+
+            container.appendChild(btn);
+        });
+
+        // --- Lógica del Banner de Cookies ---
+        const cookieBanner = document.getElementById('cookie-banner');
+        const acceptBtn = document.getElementById('accept-cookies');
+        const declineBtn = document.getElementById('decline-cookies');
+
+        setTimeout(() => {
+            if (!localStorage.getItem('cookieConsent')) {
+                cookieBanner.classList.remove('invisible');
+                setTimeout(() => {
+                    cookieBanner.classList.remove('translate-y-full', 'opacity-0');
+                    cookieBanner.classList.add('translate-y-0', 'opacity-100');
+                }, 50);
+            }
+        }, 1000);
+
+        const hideBanner = () => {
+            cookieBanner.classList.remove('translate-y-0', 'opacity-100');
+            cookieBanner.classList.add('translate-y-full', 'opacity-0');
+            setTimeout(() => {
+                cookieBanner.classList.add('invisible');
+            }, 700);
+        };
+
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            hideBanner();
+        });
+
+        declineBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'declined');
+            declineBtn.classList.remove('bg-white', 'text-gray-400', 'border-gray-300', 'cursor-not-allowed');
+            declineBtn.classList.add('bg-black', 'text-white', 'border-black');
+        });
+    </script>
+</body>
+</html>
