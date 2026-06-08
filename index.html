@@ -3,9 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Serpientes y Escaleras Historia | Equipo de Dereck</title>
+    <title>Serpientes y Escaleras Historia: Equipo de Dereck</title>
+    <!-- Ícono de la pestaña (Favicon) -->
+    <link rel="icon" href="https://i.ibb.co/h191t3k2/Devon-Title-logo.png" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.tailwind = window.tailwind || {};
+        window.tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Jost', 'sans-serif'],
+                        serif: ['"Bodoni Moda"', 'serif'],
+                    },
+                    letterSpacing: {
+                        widest: '.2em',
+                        wider: '.1em'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* --- Sincronización Animación (Línea) --- */
+        @keyframes slashAnim {
+            0%, 20% { width: 0%; opacity: 0; transform: rotate(-45deg) scaleX(0); }
+            30%, 70% { width: 145%; opacity: 1; transform: rotate(-45deg) scaleX(1); }
+            80%, 100% { width: 0%; opacity: 0; transform: rotate(-45deg) scaleX(0); }
+        }
+        
+        .animated-slash {
+            position: absolute;
+            height: 3px;
+            background-color: currentColor;
+            border-radius: 2px;
+            transform-origin: center;
+            animation: slashAnim 4s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @media (min-width: 768px) {
+            .animated-slash {
+                height: 5px;
+            }
+        }
+
+        /* Utilidades para ocultar scrollbar en el selector de idiomas */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Animación de transición de texto */
+        .fade-out {
+            opacity: 0;
+            transform: translateY(10px);
+            filter: blur(2px);
+        }
+    </style>
 </head>
-<body>
-    <h1>Servidores Activados</h1>
+
+<body class="bg-white text-black font-sans flex flex-col min-h-screen items-center justify-center selection:bg-black selection:text-white relative">
+
+    <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center justify-center gap-10 md:gap-14 animate-fade-in flex-1">
+        
+        <!-- Logo HISTORIA centrado con interactividad en la T y línea animada en la O -->
+        <div id="historia-text" class="flex items-center justify-center transition-all duration-500 w-full overflow-hidden py-10">
+            <!-- He ajustado un poco el tamaño responsivo para que la palabra más larga quepa sin desbordarse -->
+            <span class="text-[2.75rem] sm:text-6xl md:text-7xl lg:text-[7rem] xl:text-[8rem] font-bold tracking-widest text-black font-serif uppercase flex items-center">
+                HIST<span class="relative inline-flex items-center justify-center">O<span class="absolute inset-0 flex items-center justify-center pointer-events-none"><span class="animated-slash"></span></span></span>RIA
+            </span>
+        </div>
+
+        <!-- Subtítulo del Proyecto -->
+        <div class="flex flex-col items-center gap-2 -mt-6 mb-6 text-[10px] md:text-xs font-light tracking-widest uppercase text-gray-400" style="font-family: 'Jost', sans-serif;">
+            <span>-</span>
+            <span>Proyecto: Serpientes y Escaleras</span>
+        </div>
+
+        <!-- Texto de Beta y mantenimiento con ID para animación -->
+        <div id="text-wrapper" class="flex flex-col items-center gap-4 max-w-lg transition-all duration-500 ease-in-out">
+            <a href="access.html" id="beta-text" class="text-[10px] md:text-xs font-light tracking-widest uppercase text-gray-400 hover:text-black transition-colors duration-300 mb-1 cursor-pointer block">
+                Acceder a la versión Beta (Sujeta a posibles errores)
+            </a>
+            <h1 id="maint-title" class="text-sm md:text-base font-medium tracking-[0.3em] uppercase text-black" style="font-family: 'Jost', sans-serif;">
+                Sitio en mantenimiento
+            </h1>
+            <div class="w-12 h-[1px] bg-black/20 my-2"></div>
+            <p id="maint-body" class="text-xs md:text-sm text-gray-500 tracking-wider leading-relaxed font-light" style="font-family: 'Jost', sans-serif;">
+                <!-- El texto se carga dinámicamente con JS para mostrar el saludo correcto según la hora -->
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Selector de idiomas (Bottom Footer) -->
+    <footer class="w-full absolute bottom-6 md:bottom-10 px-6 flex justify-center z-10">
+        <div id="lang-selector" class="flex gap-6 overflow-x-auto no-scrollbar text-[9px] md:text-[10px] font-sans tracking-[0.2em] uppercase max-w-6xl w-full justify-start lg:justify-center px-4 pb-2">
+            <!-- Los botones de idioma se generan aquí mediante JavaScript -->
+        </div>
+    </footer>
+
+    <!-- Banner de Cookies -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full md:bottom-6 md:left-6 md:w-auto md:max-w-sm bg-white border-t md:border border-black p-6 z-50 transform translate-y-full opacity-0 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col gap-4 font-sans shadow-2xl invisible">
+        <h3 class="text-xs font-semibold tracking-widest uppercase text-black">Uso de Cookies</h3>
+        <p class="text-xs text-gray-500 leading-relaxed">
+            Utilizamos cookies para ofrecerle una experiencia excepcional. Al continuar, acepta nuestro uso de cookies en la plataforma.
+        </p>
+        <div class="flex flex-col gap-2 mt-2">
+            <button id="accept-cookies" class="w-full bg-black text-white text-[9px] md:text-[10px] tracking-[0.2em] uppercase py-3 font-medium hover:bg-gray-800 transition-colors">
+                Aceptar
+            </button>
+            <button id="decline-cookies" class="w-full bg-white text-gray-400 border border-gray-300 text-[9px] md:text-[10px] tracking-[0.2em] uppercase py-3 font-medium cursor-not-allowed transition-all duration-500">
+                No aceptar (Solo suscripción)
+            </button>
+        </div>
+    </div>
+
+    <!-- Script de Traducción y Animación -->
+    <script>
+        const greetings = {
+            es: ['Buenos días', 'Buenas tardes', 'Buenas noches'],
+            en: ['Good morning', 'Good afternoon', 'Good evening'],
+            fr: ['Bonjour', 'Bon après-midi', 'Bonsoir'],
+            it: ['Buongiorno', 'Buon pomeriggio', 'Buonasera'],
+            pt: ['Bom dia', 'Boa tarde', 'Boa noite'],
+            de: ['Guten Morgen', 'Guten Tag', 'Guten Abend'],
+            ar: ['صباح الخير', 'مساء الخير', 'مساء الخير'],
+            hi: ['सुप्रभात', 'शुभ दोपहर', 'शुभ संध्या'],
+            zh: ['早上好', '下午好', '晚上好'],
+            ja: ['おはようございます', 'こんにちは', 'こんばんは'],
+            ko: ['좋은 아침입니다', '좋은 오후입니다', '좋은 저녁입니다'],
+            ru: ['Доброе утро', 'Добрый день', 'Добрый вечер'],
+            tr: ['Günaydın', 'İyi öğleden sonralar', 'İyi akşamlar'],
+            nl: ['Goedemorgen', 'Goedemiddag', 'Goedenavond'],
+            el: ['Καλημέρα', 'Καλό απόγευμα', 'Καλησπέρα']
+        };
+
+        const translations = [
+            { code: 'es', label: 'Traducir al Español', dir: 'ltr', title: 'Sitio en mantenimiento', betaText: 'Acceder a la versión Beta (Sujeta a posibles errores)', body: 'Hola, {greeting}. Gracias por entrar a nuestro Juego Online de nuestro equipo: Ian, Dereck, Max y Emiliano. Este juego está totalmente diseñado y creado por Dereck. (P.D.: Denos un porcentaje extra maestra, me tomó varios días terminarlo :)' },
+            { code: 'en', label: 'Translate to English', dir: 'ltr', title: 'Site under maintenance', betaText: 'However you can enter the Beta version (Unfinished some errors)', body: 'Hello, {greeting}. Thank you for playing the Online Game from our team: Ian, Dereck, Max, and Emiliano. This game is fully designed and created by Dereck. (P.S.: Please give us extra credit teacher, it took me several days to finish it :)' },
+            { code: 'fr', label: 'Traduire en Français', dir: 'ltr', title: 'Site en maintenance', betaText: 'Cependant vous pouvez entrer dans la version Bêta (Inachevé quelques erreurs)', body: 'Bonjour, {greeting}. Merci d\'avoir accédé au Jeu en Ligne de notre équipe : Ian, Dereck, Max et Emiliano. Ce jeu est entièrement conçu et créé par Dereck. (P.S. : Donnez-nous des points supplémentaires maîtresse, il m\'a fallu plusieurs jours pour le terminer :)' },
+            { code: 'it', label: 'Traduci in Italiano', dir: 'ltr', title: 'Sito in manutenzione', betaText: 'Tuttavia puoi accedere alla versione Beta (Incompleto alcuni errori)', body: 'Ciao, {greeting}. Grazie per aver effettuato l\'accesso al Gioco Online del nostro team: Ian, Dereck, Max ed Emiliano. Questo gioco è interamente progettato e creato da Dereck. (P.S.: Ci dia una percentuale extra maestra, ci sono voluti diversi giorni per finirlo :)' },
+            { code: 'pt', label: 'Traduzir para Português', dir: 'ltr', title: 'Site em manutenção', betaText: 'No entanto, você pode entrar na versão Beta (Inacabado alguns erros)', body: 'Olá, {greeting}. Obrigado por entrar no Jogo Online da nossa equipe: Ian, Dereck, Max e Emiliano. Este jogo é totalmente projetado e criado por Dereck. (P.S.: Nos dê uma porcentagem extra professora, levei vários dias para terminá-lo :)' },
+            { code: 'de', label: 'Übersetzen auf Deutsch', dir: 'ltr', title: 'Wartungsarbeiten', betaText: 'Sie können jedoch die Beta-Version betreten (Unfertig einige Fehler)', body: 'Hallo, {greeting}. Danke, dass Sie das Online-Spiel unseres Teams betreten haben: Ian, Dereck, Max und Emiliano. Dieses Spiel wurde vollständig von Dereck entworfen und entwickelt. (P.S.: Geben Sie uns einen extra Prozentsatz, Lehrerin, ich habe mehrere Tage gebraucht, um es zu beenden :)' },
+            { code: 'ar', label: 'ترجم إلى العربية', dir: 'rtl', title: 'الموقع تحت الصيانة', betaText: 'ومع ذلك يمكنك الدخول إلى الإصدار التجريبي (غير مكتمل بعض الأخطاء)', body: 'مرحباً، {greeting}. شكراً لدخولك اللعبة عبر الإنترنت الخاصة بفريقنا: إيان، ديريك، ماكس وإيميليانو. تم تصميم هذه اللعبة وإنشاؤها بالكامل بواسطة ديريك. (ملاحظة: أعطنا نسبة إضافية يا معلمتي، استغرق الأمر مني عدة أيام لإنهائها :)' },
+            { code: 'hi', label: 'हिंदी में अनुवाद करें', dir: 'ltr', title: 'साइट रखरखाव में है', betaText: 'हालांकि आप बीटा संस्करण दर्ज कर सकते हैं (अधूरा कुछ त्रुटियां)', body: 'नमस्ते, {greeting}। हमारी टीम: इयान, डेरेक, मैक्स और एमिलियानो के ऑनलाइन गेम में प्रवेश करने के लिए धन्यवाद। यह गेम पूरी तरह से डेरेक द्वारा डिज़ाइन और बनाया गया है। (P.S.: कृपया हमें अतिरिक्त प्रतिशत दें टीचर, मुझे इसे पूरा करने में कई दिन लगे :)' },
+            { code: 'zh', label: '翻译成中文', dir: 'ltr', title: '网站维护中', betaText: '但是你可以进入测试版（未完成一些错误）', body: '你好，{greeting}。感谢您进入我们团队的在线游戏：Ian、Dereck、Max 和 Emiliano。这个游戏完全由 Dereck 设计和制作。（附言：老师请给我们额外加分，我花了好几天才完成它 :)' },
+            { code: 'ja', label: '日本語に翻訳', dir: 'ltr', title: 'メンテナンス中', betaText: 'ただし、ベータ版にアクセスできます（未完成のいくつかのエラー）', body: 'こんにちは、{greeting}。私たちのチーム（イアン、デレク、マックス、エミリアーノ）のオンラインゲームにアクセスしていただきありがとうございます。このゲームは完全にデレクによってデザイン、作成されました。（追伸：先生、ボーナス点をください。完成するのに数日かかりました :)' },
+            { code: 'ko', label: '한국어로 번역', dir: 'ltr', title: '사이트 유지 보수 중', betaText: '그러나 베타 버전에 들어갈 수 있습니다 (완성되지 않은 일부 오류)', body: '안녕하세요, {greeting}. 저희 팀(Ian, Dereck, Max, Emiliano)의 온라인 게임에 접속해 주셔서 감사합니다. 이 게임은 전적으로 Dereck이 설계하고 제작했습니다. (추신: 선생님 가산점 좀 주세요, 이거 끝내는 데 며칠 걸렸어요 :)' },
+            { code: 'ru', label: 'Перевести на русский', dir: 'ltr', title: 'Сайт на реконструкции', betaText: 'Однако вы можете войти в бета-версию (Незавершенная некоторые ошибки)', body: 'Привет, {greeting}. Спасибо, что зашли в онлайн-игру нашей команды: Ян, Дерек, Макс и Эмилиано. Эта игра полностью разработана и создана Дереком. (P.S.: Поставьте нам дополнительный балл, учительница, у меня ушло несколько дней, чтобы закончить ее :)' },
+            { code: 'tr', label: 'Türkçeye çevir', dir: 'ltr', title: 'Site bakımda', betaText: 'Ancak Beta sürümüne girebilirsiniz (Bitmemiş bazı hatalar)', body: 'Merhaba, {greeting}. Ekibimizin (Ian, Dereck, Max ve Emiliano) Çevrimiçi Oyununa girdiğiniz için teşekkür ederiz. Bu oyun tamamen Dereck tarafından tasarlandı ve yaratıldı. (Not: Öğretmenim bize ekstra puan verin, bitirmem günlerce sürdü :)' },
+            { code: 'nl', label: 'Vertaal naar Nederlands', dir: 'ltr', title: 'Site in onderhoud', betaText: 'U kunt echter wel naar de bètaversie gaan (Onvoltooid sommige fouten)', body: 'Hallo, {greeting}. Bedankt voor het betreden van de Online Game van ons team: Ian, Dereck, Max en Emiliano. Deze game is volledig ontworpen en gemaakt door Dereck. (P.S.: Geef ons extra punten juf, het kostte me meerdere dagen om het af te maken :)' },
+            { code: 'el', label: 'Μετάφραση στα Ελληνικά', dir: 'ltr', title: 'Ιστότοπος υπό συντήρηση', betaText: 'Ωστόσο μπορείτε να μπείτε στην έκδοση Beta (Ημιτελής μερικά σφάλματα)', body: 'Γεια σας, {greeting}. Σας ευχαριστούμε που μπήκατε στο Διαδικτυακό Παιχνίδι της ομάδας μας: Ian, Dereck, Max και Emiliano. Αυτό το παιχνίδι σχεδιάστηκε και δημιουργήθηκε εξ ολοκλήρου από τον Dereck. (Υ.Γ.: Δώστε μας επιπλέον βαθμολογία δασκάλα, μου πήρε αρκετές μέρες για να το τελειώσω :)' }
+        ];
+
+        const container = document.getElementById('lang-selector');
+        const textWrapper = document.getElementById('text-wrapper');
+        const titleEl = document.getElementById('maint-title');
+        const bodyEl = document.getElementById('maint-body');
+        const betaTextEl = document.getElementById('beta-text');
+
+        let currentLangCode = 'es';
+
+        function getGreetingText(langCode) {
+            const hour = new Date().getHours();
+            let index = 0; // Mañana (0-11)
+            if (hour >= 12 && hour < 19) index = 1; // Tarde (12-18)
+            else if (hour >= 19 || hour < 5) index = 2; // Noche (19-23)
+            return greetings[langCode] ? greetings[langCode][index] : '';
+        }
+
+        // Función para actualizar el contenido de la pantalla reemplazando variables
+        function updateContent(langCode) {
+            const langData = translations.find(t => t.code === langCode);
+            if (!langData) return;
+            
+            const greetText = getGreetingText(langCode);
+            
+            titleEl.textContent = langData.title;
+            bodyEl.textContent = langData.body.replace('{greeting}', greetText);
+            betaTextEl.textContent = langData.betaText;
+            textWrapper.dir = langData.dir;
+        }
+
+        // Ejecutar inmediatamente para mostrar el texto dinámico por defecto (Español)
+        updateContent(currentLangCode);
+
+        translations.forEach(lang => {
+            const btn = document.createElement('button');
+            btn.className = `lang-btn whitespace-nowrap flex-shrink-0 px-1 py-1 border-b border-transparent transition-all duration-300 ${lang.code === 'es' ? '!text-black !border-black font-semibold' : 'text-gray-400 hover:text-black'}`;
+            btn.dataset.lang = lang.code;
+            btn.textContent = lang.label;
+            
+            btn.addEventListener('click', () => {
+                if (btn.classList.contains('!text-black')) return; // Evitar click si ya está activo
+                
+                // 1. Activar animación de ocultamiento y blur
+                textWrapper.classList.add('fade-out');
+                
+                // 2. Esperar al medio de la animación para cambiar el texto dinámicamente
+                setTimeout(() => {
+                    currentLangCode = lang.code;
+                    updateContent(currentLangCode);
+                    
+                    // 3. Remover clase de ocultamiento para que vuelva a aparecer
+                    textWrapper.classList.remove('fade-out');
+                    
+                    // 4. Actualizar estado visual de los botones
+                    document.querySelectorAll('.lang-btn').forEach(b => {
+                        b.classList.remove('!text-black', '!border-black', 'font-semibold');
+                        b.classList.add('text-gray-400', 'border-transparent');
+                    });
+                    btn.classList.remove('text-gray-400', 'border-transparent');
+                    btn.classList.add('!text-black', '!border-black', 'font-semibold');
+                    
+                }, 400); // 400ms = Duración de la transición definida en CSS/Tailwind
+            });
+            
+            container.appendChild(btn);
+        });
+
+        // --- Lógica del Banner de Cookies ---
+        const cookieBanner = document.getElementById('cookie-banner');
+        const acceptBtn = document.getElementById('accept-cookies');
+        const declineBtn = document.getElementById('decline-cookies');
+
+        // Mostrar el banner con animación después de 1 segundo si no hay consentimiento guardado
+        setTimeout(() => {
+            if (!localStorage.getItem('cookieConsent')) {
+                cookieBanner.classList.remove('invisible');
+                // Pequeño delay para permitir que el navegador registre la visibilidad antes de animar
+                setTimeout(() => {
+                    cookieBanner.classList.remove('translate-y-full', 'opacity-0');
+                    cookieBanner.classList.add('translate-y-0', 'opacity-100');
+                }, 50);
+            }
+        }, 1000);
+
+        const hideBanner = () => {
+            cookieBanner.classList.remove('translate-y-0', 'opacity-100');
+            cookieBanner.classList.add('translate-y-full', 'opacity-0');
+            // Ocultar del DOM después de la animación para que no bloquee clics
+            setTimeout(() => {
+                cookieBanner.classList.add('invisible');
+            }, 700);
+        };
+
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            hideBanner();
+        });
+
+        declineBtn.addEventListener('click', () => {
+            // Guarda la decisión pero NO oculta el banner
+            localStorage.setItem('cookieConsent', 'declined');
+            
+            // Cambia el estilo del botón para rellenarlo de negro y texto blanco
+            declineBtn.classList.remove('bg-white', 'text-gray-400', 'border-gray-300', 'cursor-not-allowed');
+            declineBtn.classList.add('bg-black', 'text-white', 'border-black');
+        });
+    </script>
 </body>
 </html>
